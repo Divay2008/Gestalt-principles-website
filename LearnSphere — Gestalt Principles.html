@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>LearnSphere — Online Learning Platform</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Ctext y='8.5' font-size='9'%3E✦%3C/text%3E%3C/svg%3E">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
+:root{--ink:#20213b;--muted:#6f7287;--purple:#6a5ce0;--pale:#f1efff;--line:#e9e9f2;--bg:#f6f6fb}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif}button,input{font:inherit}button{cursor:pointer}
+:focus-visible{outline:3px solid #b3a9ff;outline-offset:2px}
+.sidebar{position:fixed;inset:0 auto 0 0;width:245px;background:#1d1e38;color:#fff;padding:27px 18px;display:flex;flex-direction:column;z-index:5}
+.brand{display:flex;align-items:center;gap:10px;font:800 21px Manrope;margin:0 8px 44px}.brand-mark{width:34px;height:34px;border-radius:11px;background:#776be9;display:grid;place-items:center}.brand em{font-style:normal;color:#aaa2ff}
+.nav{display:grid;gap:6px}.nav button{border:0;background:transparent;color:#b4b6cb;text-align:left;padding:12px 14px;border-radius:9px;font-size:13px;display:flex;gap:12px;align-items:center}.nav button:hover{background:#2b2c4b;color:#fff}.nav button.active{background:#3a3a60;color:#fff;box-shadow:inset 4px 0 #9a90ff;font-weight:600}
+.side-bottom{margin-top:auto}.help{background:#292a49;border:1px solid #3a3b5b;border-radius:12px;padding:14px;margin-bottom:18px}.help b{font-size:12px}.help p{font-size:11px;color:#b0b1c6;line-height:1.5}.help button{border:0;background:none;color:#c2bbff;padding:0;font-size:11px}
+.profile{border-top:1px solid #383951;padding:16px 4px 0;display:flex;gap:10px;align-items:center;font-size:12px}.avatar{width:34px;height:34px;border-radius:50%;background:#dcd7ff;color:#554bb1;display:grid;place-items:center;font-weight:700}.profile small{display:block;color:#a2a4ba;font-size:10px;margin-top:3px}
+main{margin-left:245px;min-height:100vh}.topbar{height:72px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 38px;position:sticky;top:0;z-index:3}.crumb{font-size:12px;color:#8a8ca0}.crumb b{color:#44465d}.tools{display:flex;gap:10px;align-items:center}
+.search{width:min(280px,34vw);border:1px solid var(--line);border-radius:9px;padding:10px 13px;outline:none;font-size:12px}.search:focus{border-color:var(--purple)}
+.lens-btn{border:1.5px solid var(--purple);background:#fff;color:var(--purple);border-radius:9px;padding:9px 13px;font-size:12px;font-weight:700;white-space:nowrap}.lens-btn[aria-pressed=true]{background:var(--purple);color:#fff}
+.content{max-width:1240px;margin:auto;padding:34px 38px 90px}.heading{margin-bottom:22px}.heading h1{font:800 28px Manrope;margin:0 0 6px;letter-spacing:-.8px}.heading p{font-size:13px;color:var(--muted);margin:0}
+.hero{background:linear-gradient(115deg,#292747,#45406f);color:#fff;border-radius:17px;padding:32px 36px;min-height:210px;display:flex;align-items:center;justify-content:space-between;overflow:hidden;position:relative}
+.hero:after{content:"";position:absolute;width:250px;height:250px;border:1px solid #ffffff20;border-radius:50%;right:8%;top:-90px;box-shadow:0 0 0 35px #ffffff08,0 0 0 70px #ffffff06}
+.hero-copy{position:relative;z-index:1;max-width:520px}.tag{font-size:11px;color:#c9c4ff;font-weight:700}.hero h2{font:800 32px Manrope;line-height:1.15;margin:10px 0 9px}.hero p{font-size:13px;color:#d0cfe0;line-height:1.7;margin:0 0 20px}
+.primary{border:0;border-radius:8px;background:#8a7ef5;color:#1a1740;padding:12px 18px;font-size:12px;font-weight:700;box-shadow:0 6px 18px #8a7ef555;transition:.2s}.primary:hover{background:#a095ff}
+.hero-art{position:relative;z-index:1;width:150px;height:125px;border-radius:20px;background:#ffffff12;border:1px solid #ffffff25;display:grid;place-items:center;font-size:62px;transform:rotate(5deg);margin-right:5%}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border:1px solid var(--line);border-radius:12px;margin:18px 0 8px}.stat{padding:17px 20px;border-right:1px solid var(--line)}.stat:last-child{border:0}.stat label{font-size:11px;color:var(--muted)}.stat strong{display:block;font:800 24px Manrope;margin:6px 0 2px}.stat small{font-size:11px;color:#2a8a66}
+.section-head{display:flex;justify-content:space-between;align-items:center;margin:30px 0 14px}.section-head h2{font:800 18px Manrope;margin:0}.section-head a{font-size:12px;color:var(--purple);background:none;border:0;font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.course{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:.2s}.course:hover{transform:translateY(-3px);box-shadow:0 12px 30px #27234b18}
+.art{height:108px;display:grid;place-items:center;font-size:42px;position:relative}.lavender{background:#eeebff}.mint{background:#e2f6ed}.peach{background:#fff0e5}.blue{background:#e6f1ff}.pink{background:#ffedf4}.yellow{background:#fff7dc}
+.ring{position:absolute;right:10px;top:10px;background:#fff;border-radius:50%;width:44px;height:44px;box-shadow:0 2px 8px #0001}.ring text{font:700 9.5px 'DM Sans';fill:#4b3fc2}
+.ring-p{animation:fill 1.1s ease-out both}@keyframes fill{from{stroke-dasharray:0 94.2}}
+.course-body{padding:15px}.meta{font-size:11px;color:#7d8094;display:flex;justify-content:space-between}.course h3{font:700 14px Manrope;margin:8px 0 6px}.course p{font-size:12px;color:var(--muted);line-height:1.5;min-height:36px;margin:0 0 10px}
+.teacher{font-size:11px;color:#6a6d82;border-top:1px solid #f0f0f5;padding-top:10px;display:flex;justify-content:space-between}
+.course-body button{margin-top:12px;width:100%;padding:10px;border:0;background:var(--purple);color:#fff;border-radius:7px;font-size:12px;font-weight:700}.course-body button:hover{background:#5a4cd0}
+.page{display:none}.page.active{display:block}.filters{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}.filters button{border:1px solid var(--line);background:#fff;color:#6a6d82;padding:8px 14px;border-radius:20px;font-size:12px}.filters button.active{background:#eeecff;border-color:#cfc9ff;color:#4b3fc2;font-weight:700}
+.learning-list{display:grid;gap:10px}.learning-row{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;align-items:center;gap:14px}.learning-row .art{width:54px;height:54px;border-radius:9px;flex-shrink:0;font-size:24px}.learning-info{flex:1}.learning-info b{font-size:13px}.learning-info small{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+.bar{height:6px;background:#eeeef5;border-radius:8px;margin-top:9px;overflow:hidden}.bar i{display:block;height:100%;background:#6a5ce0;border-radius:8px;animation:grow 1.1s ease-out both}@keyframes grow{from{width:0}}
+.learning-row button{border:0;background:#f0efff;color:#4b3fc2;border-radius:7px;padding:10px 13px;font-size:11px;font-weight:700}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;font-size:13px;color:var(--muted)}
+.principles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.principle{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;border-top:4px solid var(--pc)}
+.principle h3{font:800 16px Manrope;margin:0 0 5px}.principle>p{font-size:12px;line-height:1.6;color:var(--muted);margin:0}.demo{height:60px;background:#fafaff;border:1px solid #efedf9;border-radius:8px;margin:12px 0;display:flex;align-items:center;justify-content:center;gap:8px}
+.where{margin:0 0 12px;padding-left:18px;font-size:12px;line-height:1.6;color:#4d5066}.show{border:1.5px solid var(--pc);background:#fff;color:var(--pc);border-radius:8px;padding:8px 12px;font-size:11px;font-weight:700}.show:hover{background:var(--pc);color:#fff}
+.dot{width:14px;height:14px;border-radius:50%;background:#8579ed}.sq{width:19px;height:19px;border-radius:5px;background:#8579ed}.sq.o{background:#f3a73c;border-radius:50%}.line{width:120px;height:2px;background:#8579ed;position:relative}.line:after{content:"";position:absolute;right:0;top:-4px;border:5px solid transparent;border-left-color:#8579ed}
+.dg{width:38px;height:38px;border-radius:50%;border:5px dotted #cfc9ff;border-top:5px solid #6a5ce0;border-right:5px solid #6a5ce0}.dk{background:#292747;color:#fff;padding:9px 14px;border-radius:6px;font-size:11px}.bx{border:1.5px solid #8f86f0;border-radius:6px;padding:8px 14px;font-size:11px}
+.mv .dot{animation:bob .8s infinite alternate}@keyframes bob{to{transform:translateY(-9px)}}.fc{background:#6a5ce0;color:#fff;padding:9px 14px;border-radius:6px;font-size:11px;box-shadow:0 5px 15px #6a5ce055}
+.process{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px}.process li{padding:9px 0;font-size:13px;color:#64677c;line-height:1.6}.process b{color:#292a42}.note{font-size:12px;color:#75788c;line-height:1.6;margin-top:14px}
+.toast{position:fixed;right:22px;bottom:22px;background:#242541;color:#fff;padding:12px 17px;border-radius:9px;font-size:12px;box-shadow:0 8px 25px #1112;display:none;z-index:20}
+/* Gestalt lens */
+.gx{position:relative;outline:2.5px dashed var(--gc);outline-offset:3px}
+.gb{position:absolute;top:6px;left:6px;display:flex;gap:4px;z-index:8;flex-wrap:wrap;pointer-events:none}.gb span{color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:10px;box-shadow:0 2px 6px #0003}
+#legend{position:fixed;left:calc(245px + 20px);right:20px;bottom:14px;z-index:15;display:none;justify-content:center;gap:6px;flex-wrap:wrap;background:#fffffff2;border:1px solid var(--line);border-radius:14px;padding:9px;box-shadow:0 8px 28px #1a174822;width:fit-content;margin:auto}
+#legend.on{display:flex}#legend button{border:1.5px solid var(--lc);background:#fff;color:var(--lc);border-radius:16px;padding:5px 11px;font-size:11px;font-weight:700}#legend button.sel{background:var(--lc);color:#fff}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:1000px){.sidebar{width:210px}main{margin-left:210px}#legend{left:230px}.content{padding:27px 22px 90px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+@media(max-width:700px){.sidebar{position:static;width:auto;padding:12px 14px;display:block}.brand{margin:0;font-size:18px}.nav,.side-bottom{display:none}main{margin:0}#legend{left:10px;right:10px}.topbar{height:auto;padding:10px 15px;flex-wrap:wrap}.search{width:100%}.content{padding:22px 15px 110px}.heading h1{font-size:24px}.hero{padding:22px}.hero h2{font-size:25px}.hero-art{width:76px;height:76px;font-size:36px;margin:0}.grid,.principles{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<aside class="sidebar">
+  <div class="brand"><span class="brand-mark">✦</span><span>learn<em>sphere</em></span></div>
+  <nav class="nav" data-g="cont" aria-label="Main">
+    <button class="active" data-page="dashboard">▦　Overview</button>
+    <button data-page="explore">◈　Explore courses</button>
+    <button data-page="learning">▤　My learning</button>
+    <button data-page="gestalt">✧　Gestalt principles</button>
+    <button data-page="process">☼　Design process</button>
+  </nav>
+  <div class="side-bottom"><div class="help" data-g="reg"><b>Need a hand?</b><p>Find tips to make the most of your learning journey.</p><button onclick="notify('Explore courses, track progress and complete lessons.')">Visit help centre ↗</button></div><div class="profile"><div class="avatar">DS</div><div><b>Student account</b><small>LearnSphere demo</small></div></div></div>
+</aside>
+<main>
+<header class="topbar"><div class="crumb">Workspace　›　<b id="crumb">Overview</b></div>
+<div class="tools"><input class="search" id="search" placeholder="Search courses…" aria-label="Search courses"><button class="lens-btn" id="lensBtn" aria-pressed="false" onclick="toggleLens()">✧ Gestalt lens</button></div></header>
+<div class="content">
+<section class="page active" id="dashboard">
+  <div class="heading"><h1>Good to see you again 👋</h1><p>Here's what's happening with your learning journey.</p></div>
+  <div class="hero" data-g="fig foc"><div class="hero-copy"><div class="tag">Your next chapter starts here</div><h2>Small steps.<br>Big achievements.</h2><p>Keep building your skills with courses designed to move you forward.</p><button class="primary" data-g="foc" onclick="go('explore')">Explore courses →</button></div><div class="hero-art">🎓</div></div>
+  <div class="stats" data-g="reg prox"><div class="stat"><label>Enrolled courses</label><strong id="statCourses">2</strong><small>Keep learning</small></div><div class="stat"><label>Lessons completed</label><strong id="statLessons">11</strong><small>You're making progress</small></div><div class="stat"><label>Learning hours</label><strong>8.5h</strong><small>This month</small></div><div class="stat"><label>Weekly goal</label><strong>70%</strong><small>Almost there</small></div></div>
+  <div class="section-head"><h2>Continue learning</h2><button class="section-link" style="all:unset;cursor:pointer;font-size:12px;color:#6a5ce0;font-weight:600" onclick="go('learning')">View all →</button></div><div class="grid" id="continueGrid" data-g="sim fate"></div>
+  <div class="section-head"><h2>Made for curious minds</h2><button style="all:unset;cursor:pointer;font-size:12px;color:#6a5ce0;font-weight:600" onclick="go('gestalt')">See the design principles →</button></div>
+  <div class="panel">A focused learning experience, designed around clarity, consistency and meaningful progress.</div>
+</section>
+<section class="page" id="explore">
+  <div class="heading"><h1>Explore courses</h1><p>Find the right course for your next skill.</p></div>
+  <div class="filters" id="filters" data-g="sim"><button class="active" data-filter="All">All courses</button><button data-filter="Design">Design</button><button data-filter="Development">Development</button><button data-filter="Business">Business</button><button data-filter="Creative">Creative</button></div>
+  <div class="grid" id="courseGrid" data-g="sim"></div>
+</section>
+<section class="page" id="learning">
+  <div class="heading"><h1>My learning</h1><p>Your enrolled courses and progress in one place.</p></div>
+  <div class="learning-list" id="learningList" data-g="cont fate"></div>
+</section>
+<section class="page" id="gestalt">
+  <div class="heading"><h1>Gestalt principles</h1><p>Eight principles of visual perception — each one used on a real part of this site. Press “Show on site” to see exactly where.</p></div>
+  <div class="principles" id="principleGrid"></div>
+</section>
+<section class="page" id="process">
+  <div class="heading"><h1>Design process</h1><p>How the LearnSphere experience was planned and structured.</p></div>
+  <div class="process"><ol>
+  <li><b>Understand the problem:</b> Learners need one clear place to discover courses and monitor progress.</li>
+  <li><b>Identify users:</b> University students and independent learners who value simple, self-paced learning.</li>
+  <li><b>Plan the structure:</b> Overview, Explore Courses, My Learning, Gestalt Principles and Design Process.</li>
+  <li><b>Apply visual principles:</b> Proximity, similarity, continuity, closure, figure–ground, common region, common fate and focal point — switch on the Gestalt lens to see each one.</li>
+  <li><b>Build and review:</b> Check navigation, search, enrolment, progress updates, keyboard focus and responsive layout.</li></ol>
+  <p class="note"><b>Testing reminder:</b> Ask real users to search, enrol and find their progress. Record their actual feedback and the improvements you made. This demo uses sample courses and browser storage; it is not connected to a live student database.</p></div>
+</section>
+</div>
+</main>
+<div id="legend" role="group" aria-label="Filter Gestalt lens"></div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const courses=[
+{id:1,title:'UI/UX Design Fundamentals',category:'Design',level:'Beginner',duration:'6h 20m',instructor:'Olivia Rhye',initials:'OR',color:'lavender',icon:'🎨',description:'Learn the foundations of user-centred design, visual hierarchy and prototyping.',progress:68,enrolled:true},
+{id:2,title:'Complete Python Bootcamp',category:'Development',level:'Beginner',duration:'9h 45m',instructor:'Marcus Chen',initials:'MC',color:'mint',icon:'⌘',description:'Build a strong programming foundation with practical Python projects.',progress:32,enrolled:true},
+{id:3,title:'Digital Marketing Strategy',category:'Business',level:'Intermediate',duration:'4h 10m',instructor:'Ava Patel',initials:'AP',color:'peach',icon:'📈',description:'Understand audiences, build campaigns and measure digital growth.',progress:0,enrolled:false},
+{id:4,title:'Photography: Beyond Auto',category:'Creative',level:'Beginner',duration:'5h 30m',instructor:'Noah Williams',initials:'NW',color:'blue',icon:'📷',description:'Master composition, lighting and camera settings to tell better stories.',progress:0,enrolled:false},
+{id:5,title:'Data Analytics Essentials',category:'Development',level:'Intermediate',duration:'7h 15m',instructor:'Mia Johnson',initials:'MJ',color:'pink',icon:'▥',description:'Turn raw information into clear insights with analytical thinking.',progress:0,enrolled:false},
+{id:6,title:'Brand Identity Workshop',category:'Design',level:'Intermediate',duration:'3h 50m',instructor:'Ethan Brooks',initials:'EB',color:'yellow',icon:'✧',description:'Create memorable visual identities through strategy and design systems.',progress:0,enrolled:false}];
+const P=[
+['prox','Proximity','#d6336c','Elements placed close together are seen as one group.',['Each course card keeps category, title, description, instructor and button in one tight block','The four stats sit together with equal gaps, apart from the course grid','Help box and profile are grouped at the bottom of the sidebar'],'Students scan one card as one idea.','<i class="dot"></i><i class="dot"></i><span style="width:26px"></span><i class="dot"></i><i class="dot"></i>'],
+['sim','Similarity','#1f8a5f','Elements sharing colour, shape or size are seen as related.',['All six course cards use one identical layout','Every card button uses the same purple style','Category filter chips share one pill shape'],'Repeated patterns are learned once and trusted.','<i class="sq"></i><i class="sq"></i><i class="sq o"></i><i class="sq"></i><i class="sq"></i>'],
+['cont','Continuity','#c97a0b','The eye follows aligned elements along a line or path.',['Sidebar items share one left edge and lead the eye from Overview down to Design process','My Learning rows align art, title and progress bars on one line'],'Learners follow a natural next step.','<span class="line"></span>'],
+['clos','Closure','#1f6fd1','The mind completes gaps to see a whole shape.',['Progress rings on enrolled courses: a dotted track plus a partial arc reads as one full circle'],'Progress shows in a very small space.','<span class="dg"></span>'],
+['fig','Figure–Ground','#6c4fd1','A main subject stands apart from its background.',['Dark hero banner against the light page','White cards against the pale grey background'],'The most important area is obvious.','<span class="dk">Hero</span>'],
+['reg','Common Region','#0a8f9c','Items inside one boundary are seen as belonging together.',['The four statistics share one bordered panel','Each course lives in its own card','The sidebar help box is enclosed'],'Information feels organised and easy to compare.','<span class="bx">Weekly goal　70%</span>'],
+['fate','Common Fate','#c2410c','Elements that move or change together are seen as a group.',['On load, all progress rings and bars fill together','Hovering a card lifts its image, text and button as one'],'Shared movement tells learners these items belong together.','<span class="mv" style="display:flex;gap:8px"><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>'],
+['foc','Focal Point','#b0235f','The most distinctive element attracts attention first.',['Hero headline and the bright “Explore courses” button','Active sidebar item with its accent bar','Course buttons in solid purple'],'Learners notice the next action first.','<span class="fc">Continue</span>']];
+const col=k=>P.find(p=>p[0]===k)[2];
+let filter='All',query='',lensOn=false,only='';
+function load(){try{let s=JSON.parse(localStorage.getItem('learnsphere-demo'));if(Array.isArray(s))courses.forEach(c=>{let x=s.find(y=>y.id===c.id);if(x){c.enrolled=x.enrolled;c.progress=x.progress}})}catch(e){}}
+function save(){try{localStorage.setItem('learnsphere-demo',JSON.stringify(courses))}catch(e){}}
+function notify(m){let t=document.getElementById('toast');t.textContent=m;t.style.display='block';clearTimeout(window.tt);window.tt=setTimeout(()=>t.style.display='none',2600)}
+function ring(p){return `<svg class="ring" viewBox="0 0 40 40" role="img" aria-label="${p}% complete" data-g="clos"><circle cx="20" cy="20" r="15" fill="none" stroke="#d9d5ff" stroke-width="4" stroke-dasharray="2.5 4.5"/><circle class="ring-p" cx="20" cy="20" r="15" fill="none" stroke="#6a5ce0" stroke-width="4" stroke-linecap="round" stroke-dasharray="${(94.2*p/100).toFixed(1)} 94.2" transform="rotate(-90 20 20)"/><text x="20" y="23.5" text-anchor="middle">${p}%</text></svg>`}
+function card(c){return `<article class="course" data-g="reg"><div class="art ${c.color}">${c.icon}${c.enrolled?ring(c.progress):''}</div><div class="course-body" data-g="prox"><div class="meta"><span>${c.category} · ${c.level}</span><span>◷ ${c.duration}</span></div><h3>${c.title}</h3><p>${c.description}</p><div class="teacher"><span>${c.initials}　${c.instructor}</span><span>★ 4.9</span></div><button data-g="sim foc" onclick="courseAction(${c.id})">${c.enrolled?'Continue learning':'View & enrol'}</button></div></article>`}
+function renderCourses(){let l=courses.filter(c=>(filter==='All'||c.category===filter)&&`${c.title} ${c.category}`.toLowerCase().includes(query));document.getElementById('courseGrid').innerHTML=l.map(card).join('')||'<p>No courses match your search. Try a different word.</p>';lens()}
+function renderLearning(){let l=courses.filter(c=>c.enrolled);document.getElementById('learningList').innerHTML=l.map(c=>`<div class="learning-row"><div class="art ${c.color}">${c.icon}</div><div class="learning-info"><b>${c.title}</b><small>${c.instructor} · ${c.duration} · ${c.progress}% complete</small><div class="bar"><i style="width:${c.progress}%"></i></div></div><button onclick="advance(${c.id})">Complete lesson</button></div>`).join('')||'<p>You have not enrolled in any courses yet. Explore courses to get started.</p>';lens()}
+function renderContinue(){document.getElementById('continueGrid').innerHTML=courses.filter(c=>c.enrolled).map(card).join('');lens()}
+function courseAction(id){let c=courses.find(x=>x.id===id);if(!c.enrolled){c.enrolled=true;save();notify(c.title+' added to My Learning');renderCourses();renderContinue();updateStats()}else advance(id)}
+function advance(id){let c=courses.find(x=>x.id===id);c.progress=Math.min(100,c.progress+8);save();renderLearning();renderCourses();renderContinue();updateStats();notify('Lesson completed — progress updated!')}
+function updateStats(){let e=courses.filter(c=>c.enrolled);statCourses.textContent=e.length;statLessons.textContent=e.reduce((n,c)=>n+Math.floor(c.progress/8),0)}
+function go(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));crumb.textContent=({dashboard:'Overview',explore:'Explore courses',learning:'My learning',gestalt:'Gestalt principles',process:'Design process'})[id];if(id==='explore')renderCourses();if(id==='learning')renderLearning();scrollTo({top:0,behavior:'smooth'});lens()}
+function lens(){document.querySelectorAll('.gb').forEach(b=>b.remove());document.querySelectorAll('.gx').forEach(e=>e.classList.remove('gx'));if(!lensOn)return;let seen={};document.querySelectorAll('[data-g]').forEach(e=>{if(!e.offsetParent&&e.tagName!=='svg'&&!e.closest('.page.active,.sidebar'))return;if(!e.getClientRects().length)return;let ks=e.dataset.g.split(' ').filter(k=>!only||k===only);if(!ks.length)return;e.classList.add('gx');e.style.setProperty('--gc',col(ks[0]));let key=ks.join()+e.className;if(seen[key]||e.tagName==='svg'||e.tagName==='BUTTON'&&e.closest('.course'))return;seen[key]=1;let b=document.createElement('div');b.className='gb';b.innerHTML=ks.map(k=>`<span style="background:${col(k)}">${P.find(p=>p[0]===k)[1]}</span>`).join('');e.appendChild(b)})}
+function toggleLens(v){lensOn=typeof v==='boolean'?v:!lensOn;lensBtn.setAttribute('aria-pressed',lensOn);legend.classList.toggle('on',lensOn);if(!lensOn)only='';drawLegend();lens()}
+function drawLegend(){legend.innerHTML=`<button style="--lc:#20213b" class="${only?'':'sel'}" onclick="only='';drawLegend();lens()">All</button>`+P.map(p=>`<button style="--lc:${p[2]}" class="${only===p[0]?'sel':''}" onclick="only='${p[0]}';drawLegend();lens()">${p[1]}</button>`).join('')}
+function showOn(k){only=k;let t={cont:'learning',clos:'dashboard'}[k]||'dashboard';go(t);toggleLens(true)}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));
+filters.addEventListener('click',e=>{if(e.target.dataset.filter){filter=e.target.dataset.filter;document.querySelectorAll('#filters button').forEach(b=>b.classList.toggle('active',b===e.target));renderCourses()}});
+search.addEventListener('input',e=>{query=e.target.value.toLowerCase();go('explore');renderCourses()});
+principleGrid.innerHTML=P.map(p=>`<article class="principle" style="--pc:${p[2]}"><h3>${p[1]}</h3><p>${p[3]}</p><div class="demo">${p[6]}</div><b style="font-size:12px">Where it is used on this site</b><ul class="where">${p[4].map(w=>`<li>${w}</li>`).join('')}</ul><p style="margin:0 0 12px"><b style="color:#44465d">Benefit:</b> ${p[5]}</p><button class="show" onclick="showOn('${p[0]}')">Show on site</button></article>`).join('');
+load();renderCourses();renderLearning();renderContinue();updateStats();drawLegend();
+</script>
+</body>
+</html>
